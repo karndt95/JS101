@@ -3,7 +3,7 @@
 // Ask the user for an operation to perform.
 // Perform the operation on the two numbers.
 // Print the result to the terminal.
-
+const MESSAGES = require("./calulator_messages.json");
 const readline = require("readline-sync");
 
 function prompt(message) {
@@ -14,11 +14,11 @@ function invalidNumber(number) {
   return number.trimStart() === '' || Number.isNaN(Number(number));
 }
 
-prompt("Welcome to Calculator!");
+prompt(MESSAGES['welcome']);
 
 while (true) {
 
-  prompt("What's the first number?");
+  prompt(MESSAGES['firstNumber']);
   let number1 = readline.question();
 
   while (invalidNumber(number1)) {
