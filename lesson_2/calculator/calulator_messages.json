@@ -1,5 +1,27 @@
 {
-  "welcome": "Welcome to Calculator!",
-  "firstNumber": "What's the first number?"
+  "en": {
+    "welcome": "Welcome to Calculator!",
+    "firstNumber": "What's the first number?",
+    "invalidNumber": "Hmm... that doesn't look like a valid number.",
+    "secondNumber": "What's the second number?",
+    "operationNumber": "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide",
+    "invalidOperation": "Must choose 1, 2, 3, or 4",
+    "result": "The result is: ",
+    "anotherCalc": "Would you like to perform another calculation? Type Yes/No",
+    "anotherInvalid": "Please type Yes or No",
+    "exit": "exiting..."
+  },
 
+  "ko": {
+    "welcome": "계산기에 오신 것을 환영합니다!",
+    "firstNumber": "첫 번째 숫자는 무엇입니까?",
+    "invalidNumber": "흠... 유효한 숫자가 아닌 것 같습니다.",
+    "secondNumber": "두 번째 숫자는 무엇입니까?",
+    "operationNumber": "어떤 작업을 수행하시겠습니까?\n1) 더하기 2) 빼기 3) 곱하기 4) 나누기",
+    "invalidOperation": "1, 2, 3, 4 중 하나를 선택해야 합니다.",
+    "result": "결과는 다음과 같습니다: ",
+    "anotherCalc": "다른 계산을 수행하시겠습니까? Yes/No 입력하세요",
+    "anotherInvalid": "Yes 또는 No 입력하세요.",
+    "exit": "종료 중..."
+  }
 }

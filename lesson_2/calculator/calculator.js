@@ -1,10 +1,10 @@
-// Ask the user for the first number.
-// Ask the user for the second number.
-// Ask the user for an operation to perform.
-// Perform the operation on the two numbers.
-// Print the result to the terminal.
-const MESSAGES = require("./calulator_messages.json");
-const readline = require("readline-sync");
+const MESSAGES = require('./calulator_messages.json');
+const readline = require('readline-sync');
+const LANGUAGE = 'en';
+
+function messages(message, lang = LANGUAGE) {
+  return MESSAGES[lang][message];
+}
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -14,35 +14,31 @@ function invalidNumber(number) {
   return number.trimStart() === '' || Number.isNaN(Number(number));
 }
 
-prompt(MESSAGES['welcome']);
+prompt(messages('welcome'));
 
 while (true) {
 
-  prompt(MESSAGES['firstNumber']);
+  prompt(messages('firstNumber'));
   let number1 = readline.question();
 
   while (invalidNumber(number1)) {
-    prompt("Hmm... that doesn't look like a valid number.");
+    prompt(messages('invalidNumber'));
     number1 = readline.question();
   }
 
-  prompt("What's the second number?");
+  prompt(messages('secondNumber'));
   let number2 = readline.question();
 
   while (invalidNumber(number2)) {
-    prompt("Hmm... that doesn't look like a valid number.");
+    prompt(messages('invalidNumber'));
     number2 = readline.question();
   }
 
-  console.log(`${number1} ${number2}`);
-
-  prompt(
-    "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide"
-  );
+  prompt(messages('operationNumber'));
   let operation = readline.question();
 
   while (!['1', '2', '3', '4'].includes(operation)) {
-    prompt("Must choose 1, 2, 3, or 4");
+    prompt(messages('invalidOperation'));
     operation = readline.question();
   }
 
@@ -62,17 +58,18 @@ while (true) {
       break;
   }
 
-  prompt(`The result is: ${output}`);
+  prompt(messages('result') + output);
 
-  prompt("Would you like to perform another calculation? Type Yes/No");
+  prompt(messages('anotherCalc'));
   let anotherCalculation = readline.question().toLowerCase();
 
-  while( anotherCalculation !== 'yes' && anotherCalculation !== 'no') {
-    prompt("Please type Yes or No");
+  while( anotherCalculation[0] !== 'y' && anotherCalculation[0] !== 'n') {
+    prompt(messages('anotherInvalid'));
     anotherCalculation = readline.question().toLowerCase();
   }
 
-  if (anotherCalculation === "no") {
+  if (anotherCalculation[0] === 'n') {
+    prompt(messages('exit'));
     process.exit(0);
   }
 }
