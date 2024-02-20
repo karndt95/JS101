@@ -23,6 +23,7 @@ function invalidNumber(number) {
 function cleanNumber(number) {
   number = number.replace('$', '');
   number = number.replace('%', '');
+  number = number.replace(',', '');
   return number;
 }
 
