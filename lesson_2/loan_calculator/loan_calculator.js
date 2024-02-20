@@ -60,8 +60,8 @@ while (true) {
   durationInMonths = Number(durationInYears) * 12;
 
   monthlyPayment = Number(loanAmount) *
-    (monthlyInterestRate /
-      (1 - Math.pow((1 + monthlyInterestRate), (-durationInMonths))));
+  (monthlyInterestRate /
+  (1 - Math.pow((1 + monthlyInterestRate), (-durationInMonths))));
 
   prompt(`Your monthly payment is ${USD.format(monthlyPayment)}`);
 
