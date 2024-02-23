@@ -1,26 +1,34 @@
 const readline = require('readline-sync');
 const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+let playerScore = 0;
+let computerScore = 0;
 
 function prompt(message) {
   console.log(`=> ${message}`);
 }
 
+function playerWins(choice, computerChoice) {
+  return (choice === 'rock' && computerChoice === 'scissors') ||
+    (choice === 'rock' && computerChoice === 'lizard') ||
+    (choice === 'paper' && computerChoice === 'rock') ||
+    (choice === 'paper' && computerChoice === 'spock') ||
+    (choice === 'scissors' && computerChoice === 'paper') ||
+    (choice === 'scissors' && computerChoice === 'lizard') ||
+    (choice === 'lizard' && computerChoice === 'paper') ||
+    (choice === 'lizard' && computerChoice === 'spock') ||
+    (choice === 'spock' && computerChoice === 'rock') ||
+    (choice === 'spock' && computerChoice === 'scissors');
+}
+
 function displayWinner(choice, computerChoice) {
-  if ((choice === 'rock' && computerChoice === 'scissors') ||
-      (choice === 'rock' && computerChoice === 'lizard') ||
-      (choice === 'paper' && computerChoice === 'rock') ||
-      (choice === 'paper' && computerChoice === 'spock') ||
-      (choice === 'scissors' && computerChoice === 'paper') ||
-      (choice === 'scissors' && computerChoice === 'lizard') ||
-      (choice === 'lizard' && computerChoice === 'paper') ||
-      (choice === 'lizard' && computerChoice === 'spock') ||
-      (choice === 'spock' && computerChoice === 'rock') ||
-      (choice === 'spock' && computerChoice === 'scissors')) {
-    prompt('You win!');
-  } else if (choice === computerChoice) {
+  if (choice === computerChoice) {
     prompt("It's a tie!");
+  } else if (playerWins(choice, computerChoice)) {
+    prompt('You win!');
+    playerScore += 1;
   } else {
-    prompt("Computer wins!");
+    prompt('Computer wins!');
+    computerScore += 1;
   }
 }
 
@@ -29,10 +37,38 @@ function restoreToOrginalString(string) {
     case 'r': return 'rock';
     case 'p': return 'paper';
     case 'l': return 'lizard';
-    case 'sp' : return 'spock';
-    case 'sc' : return 'scissors';
+    case 'sp': return 'spock';
+    case 'sc': return 'scissors';
     default: return string;
   }
+}
+
+function checkGameOver() {
+  if (playerScore === 3) {
+    gameOver('Player');
+    return true;
+  } else if (computerScore === 3) {
+    gameOver('Computer');
+    return true;
+  } 
+  return false;
+}
+
+function gameOver(winner) {
+  prompt(`Game Over! ${winner} wins!`);
+  computerScore = 0;
+  playerScore = 0;
+}
+
+function playAgain() {
+  prompt('Do you want to play again (y/n)?');
+  let answer = readline.question().toLowerCase();
+
+  while (answer[0] !== 'n' && answer[0] !== 'y') {
+    prompt('Please enter "y" or "n".');
+    answer = readline.question().toLowerCase();
+  }
+  return answer;
 }
 
 while (true) {
@@ -56,14 +92,12 @@ while (true) {
 
   prompt(`You chose ${choice}, computer chose ${computerChoice}`);
   displayWinner(choice, computerChoice);
-  
+  prompt(`Player Score: ${playerScore} Computer Score: ${computerScore}`);
 
-  prompt('Do you want to play again (y/n)?');
-  let answer = readline.question().toLowerCase();
-  while (answer[0] !== 'n' && answer[0] !== 'y') {
-    prompt('Please enter "y" or "n".');
-    answer = readline.question().toLowerCase();
-  }
-
+  if(checkGameOver) {
+    let answer = playAgain();
   if (answer[0] !== 'y') break;
+  }
+    
+  
 }
