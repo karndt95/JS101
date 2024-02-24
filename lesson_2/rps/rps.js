@@ -1,6 +1,8 @@
 const readline = require('readline-sync');
 const MESSAGES = require('./rps_messages.json');
 const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+let choice;
+let computerChoice;
 let playerScore = 0;
 let computerScore = 0;
 
@@ -33,6 +35,22 @@ function displayWinner(choice, computerChoice) {
   }
 }
 
+function checkChoice(playerChoice) {
+  choice = readline.question();
+
+  if (choice.length <= 2) {
+    choice = restoreToOrginalString(choice);
+  }
+
+  while (!VALID_CHOICES.includes(choice)) {
+    prompt(MESSAGES['invalid']);
+    choice = readline.question();
+    if (choice.length <= 2) {
+      choice = restoreToOrginalString(choice);
+    }
+  }
+}
+
 function restoreToOrginalString(string) {
   switch (string) {
     case 'r': return 'rock';
@@ -44,7 +62,13 @@ function restoreToOrginalString(string) {
   }
 }
 
+function generateComputerChoice() {
+  let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
+  computerChoice = VALID_CHOICES[randomIndex];
+}
+
 function checkGameOver() {
+  prompt('checkGameOver hit');
   if (playerScore === 3) {
     gameOver('Player');
     return true;
@@ -66,7 +90,7 @@ function playAgain() {
   let answer = readline.question().toLowerCase();
 
   while (answer[0] !== 'n' && answer[0] !== 'y') {
-    prompt('Please enter "y" or "n".');
+    prompt(MESSAGES['yesOrNo']);
     answer = readline.question().toLowerCase();
   }
   return answer;
@@ -74,31 +98,15 @@ function playAgain() {
 
 while (true) {
   prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
-  let choice = readline.question();
-
-  if (choice.length <= 2) {
-    choice = restoreToOrginalString(choice);
-  }
-
-  while (!VALID_CHOICES.includes(choice)) {
-    prompt(MESSAGES['invalid']);
-    choice = readline.question();
-    if (choice.length <= 2) {
-      choice = restoreToOrginalString(choice);
-    }
-  }
-
-  let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
-  let computerChoice = VALID_CHOICES[randomIndex];
+  checkChoice();
+  generateComputerChoice();
 
   prompt(`You chose ${choice}, computer chose ${computerChoice}`);
   displayWinner(choice, computerChoice);
   prompt(`Player Score: ${playerScore} Computer Score: ${computerScore}`);
 
-  if(checkGameOver) {
+  if(checkGameOver()) {
     let answer = playAgain();
   if (answer[0] !== 'y') break;
   }
-    
-  
 }

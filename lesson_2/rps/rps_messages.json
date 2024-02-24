@@ -3,5 +3,6 @@
   "tie": "It's a tie!",
   "win": "You win!",
   "lose": "Computer wins!",
-  "playAgain": "Do you want to play again (y/n)?"
+  "playAgain": "Do you want to play again (y/n)?",
+  "yesOrNo": "Please enter \"y\" or \"n\"."
 }
