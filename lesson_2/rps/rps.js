@@ -35,7 +35,7 @@ function displayWinner(choice, computerChoice) {
   }
 }
 
-function checkChoice(playerChoice) {
+function checkChoice() {
   choice = readline.question();
 
   if (choice.length <= 2) {
@@ -68,14 +68,13 @@ function generateComputerChoice() {
 }
 
 function checkGameOver() {
-  prompt('checkGameOver hit');
   if (playerScore === 3) {
     gameOver('Player');
     return true;
   } else if (computerScore === 3) {
     gameOver('Computer');
     return true;
-  } 
+  }
   return false;
 }
 
@@ -96,19 +95,28 @@ function playAgain() {
   return answer;
 }
 
+function lineBreaks() {
+  let amountOfLines = 4;
+  for (let line = 0; line < amountOfLines; line += 1) {
+    console.log();
+  }
+}
+
 function runProgram() {
+  lineBreaks();
   while (true) {
     prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
     checkChoice();
     generateComputerChoice();
-  
+
     prompt(`You chose ${choice}, computer chose ${computerChoice}`);
     displayWinner(choice, computerChoice);
     prompt(`Player Score: ${playerScore} Computer Score: ${computerScore}`);
-  
-    if(checkGameOver()) {
+    lineBreaks();
+
+    if (checkGameOver()) {
       let answer = playAgain();
-    if (answer[0] !== 'y') break;
+      if (answer[0] !== 'y') break;
     }
   }
 }
