@@ -1,4 +1,5 @@
 const readline = require('readline-sync');
+const MESSAGES = require('./rps_messages.json');
 const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 let playerScore = 0;
 let computerScore = 0;
@@ -22,12 +23,12 @@ function playerWins(choice, computerChoice) {
 
 function displayWinner(choice, computerChoice) {
   if (choice === computerChoice) {
-    prompt("It's a tie!");
+    prompt(MESSAGES["tie"]);
   } else if (playerWins(choice, computerChoice)) {
-    prompt('You win!');
+    prompt(MESSAGES['win']);
     playerScore += 1;
   } else {
-    prompt('Computer wins!');
+    prompt(MESSAGES['lose']);
     computerScore += 1;
   }
 }
@@ -61,7 +62,7 @@ function gameOver(winner) {
 }
 
 function playAgain() {
-  prompt('Do you want to play again (y/n)?');
+  prompt(MESSAGES['playAgain']);
   let answer = readline.question().toLowerCase();
 
   while (answer[0] !== 'n' && answer[0] !== 'y') {
@@ -80,7 +81,7 @@ while (true) {
   }
 
   while (!VALID_CHOICES.includes(choice)) {
-    prompt("That's not a valid choice");
+    prompt(MESSAGES['invalid']);
     choice = readline.question();
     if (choice.length <= 2) {
       choice = restoreToOrginalString(choice);
