@@ -96,17 +96,22 @@ function playAgain() {
   return answer;
 }
 
-while (true) {
-  prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
-  checkChoice();
-  generateComputerChoice();
-
-  prompt(`You chose ${choice}, computer chose ${computerChoice}`);
-  displayWinner(choice, computerChoice);
-  prompt(`Player Score: ${playerScore} Computer Score: ${computerScore}`);
-
-  if(checkGameOver()) {
-    let answer = playAgain();
-  if (answer[0] !== 'y') break;
+function runProgram() {
+  while (true) {
+    prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
+    checkChoice();
+    generateComputerChoice();
+  
+    prompt(`You chose ${choice}, computer chose ${computerChoice}`);
+    displayWinner(choice, computerChoice);
+    prompt(`Player Score: ${playerScore} Computer Score: ${computerScore}`);
+  
+    if(checkGameOver()) {
+      let answer = playAgain();
+    if (answer[0] !== 'y') break;
+    }
   }
 }
+
+runProgram();
+
