@@ -2,5 +2,18 @@
 let ages = { Herman: 32, Lily: 30, Grandpa: 402, Eddie: 10 };
 
 
-// Answer: 
-console.log(ages.hasOwnProperty('Spot'));
+
+
+
+
+
+
+
+
+
+
+/* SOLUTION:
+
+ages.hasOwnProperty("Spot");
+
+*/

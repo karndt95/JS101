@@ -8,8 +8,13 @@ let advice = "Few things in life are as important as house training your pet din
 // Expected return value:
 // => 'Few things in life are as important as '
 
-// My Answer:
-console.log(advice.substring(0, advice.indexOf('house')));
 
-// LS Answer:
+
+
+
+/* SOLUTION
+
 advice.slice(0, advice.indexOf('house'));
+// => 'Few things in life are as important as '
+
+*/

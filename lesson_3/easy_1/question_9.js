@@ -3,8 +3,19 @@ let flintstones = ["Fred", "Barney", "Wilma", "Betty", "Bambam", "Pebbles"];
 // flintstones.push("Dino");
 // How can we add multiple items to our array? ('Dino' and 'Hoppy')
 
-// My Answer:
-flintstones.push('Dino', 'Hoppy');
 
-// LS Answer:
+
+
+
+
+
+
+
+
+/* SOLUTION:
+
+let flintstones = ["Fred", "Barney", "Wilma", "Betty", "Bambam", "Pebbles"];
 flintstones.push("Dino", "Hoppy");   // we can pass multiple arguments to push
+flintstones; // => [ 'Fred', 'Barney', 'Wilma', 'Betty', 'Bambam', 'Pebbles', 'Dino', 'Hoppy' ]
+
+*/
