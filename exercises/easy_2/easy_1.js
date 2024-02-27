@@ -32,3 +32,23 @@ function greetings(arr, obj) {
 console.log(
   greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" })
 );
+
+/* SOLUTION:
+
+function greetings(name, status) {
+  return `Hello, ${name.join(" ")}! Nice to have a ${status["title"]} ${
+    status["occupation"]
+  } around.`;
+}
+
+We have two variables here, an Array and an Object. 
+We can use Array.prototype.join() on the Array, 
+and supply it with a ' ' to change the Array 
+into a full name with appropriate spacing. 
+For the Object, we simply access the items by their keys.
+
+Finally we use string interpolation with template strings to 
+combine everything into a single string and allow the function to 
+return it automatically.
+
+*/
