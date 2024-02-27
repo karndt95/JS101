@@ -16,3 +16,19 @@ console.log(
 );
 // logs Hello, John Q Doe! Nice to have a Master Plumber around.
 */
+
+function greetings(arr, obj) {
+  let message = 'Hello,'
+  arr.forEach((element) => message += ' ' + element);
+  message += '! Nice to have a';
+
+  for (let [key, value] of Object.entries(obj)) {
+    message += ' ' + value;
+  }
+  message += ' around.';
+  return message;
+}
+
+console.log(
+  greetings(["John", "Q", "Doe"], { title: "Master", occupation: "Plumber" })
+);
