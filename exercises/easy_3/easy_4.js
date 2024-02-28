@@ -28,13 +28,17 @@ The last example may take a minute or so to run.
 */
 
 function findFibonacciIndexByLength(numberLength) {
-  let arrOfNums = [1, 1];
+  let oldNum = 1n;
+  let newNum = 1n;
+  let index = 2n;
 
-  while (arrOfNums[arrOfNums.length - 1].toString().length < numberLength) {
-    arrOfNums.push((arrOfNums[arrOfNums.length - 1]) + (arrOfNums[arrOfNums.length - 2]));
-    // console.log(`last entry: ${arrOfNums[arrOfNums.length - 1]}`);
+  while ((newNum.toString().length) < numberLength) {
+    let currentValue = newNum + oldNum;
+    oldNum = newNum;
+    newNum = currentValue;
+    index += 1n;
   }
-  return arrOfNums.length;
+  return index;
 }
 
 console.log(findFibonacciIndexByLength(2n));
