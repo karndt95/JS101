@@ -26,3 +26,21 @@ findFibonacciIndexByLength(10000n) === 47847n;
 
 The last example may take a minute or so to run.
 */
+
+function findFibonacciIndexByLength(numberLength) {
+  let arrOfNums = [1, 1];
+
+  while (arrOfNums[arrOfNums.length - 1].toString().length < numberLength) {
+    arrOfNums.push((arrOfNums[arrOfNums.length - 1]) + (arrOfNums[arrOfNums.length - 2]));
+    // console.log(`last entry: ${arrOfNums[arrOfNums.length - 1]}`);
+  }
+  return arrOfNums.length;
+}
+
+console.log(findFibonacciIndexByLength(2n));
+console.log(findFibonacciIndexByLength(3n));
+console.log(findFibonacciIndexByLength(10n));
+console.log(findFibonacciIndexByLength(16n));
+console.log(findFibonacciIndexByLength(100n));
+console.log(findFibonacciIndexByLength(1000n));
+console.log(findFibonacciIndexByLength(10000n));
